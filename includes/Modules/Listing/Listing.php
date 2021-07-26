@@ -74,11 +74,12 @@ class Listing implements Module {
 	 * @return void
 	 */
 	public function assets(): void {
+		$dependency = require_once plugin()->path . '/build/listing.asset.php';
 		wp_register_script(
 			'wp-user-listing-script',
 			trailingslashit( plugin()->url ) . 'build/listing.js',
-			[ 'wp-dom-ready', 'wp-element', 'wp-i18n', 'wp-components', 'wp-api-fetch' ],
-			plugin()->version,
+			$dependency['dependencies'],
+			$dependency['version'],
 			true
 		);
 

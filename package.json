@@ -1,51 +1,33 @@
 {
-	"name": "chili-blocks",
+	"name": "user-listing",
 	"version": "1.0.0",
-	"description": "",
+	"description": "Listing and manage all users in one place",
 	"main": "index.js",
-	"scripts": {
-		"start": "webpack --mode=development --watch",
-		"build": "webpack --mode=production"
-	},
 	"author": "",
 	"license": "ISC",
-	"dependencies": {
-		"@wordpress/api-fetch": "^3.23.1",
-		"@wordpress/blocks": "^8.0.1",
-		"@wordpress/components": "^13.0.2",
-		"@wordpress/compose": "^3.25.2",
-		"@wordpress/dom-ready": "^2.13.2",
-		"@wordpress/element": "^2.20.2",
-		"@wordpress/i18n": "^3.19.1",
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2",
-		"react-router-dom": "^5.1.2"
-	},
 	"devDependencies": {
-		"@babel/core": "^7.13.14",
-		"@babel/preset-env": "^7.13.12",
-		"@babel/preset-react": "^7.13.13",
-		"@wordpress/browserslist-config": "^3.0.2",
-		"autoprefixer": "^10.2.5",
-		"babel-loader": "^8.2.2",
-		"browserslist": "^4.16.3",
-		"clean-webpack-plugin": "^3.0.0",
-		"css-loader": "^5.2.0",
-		"eslint": "^7.23.0",
-		"eslint-plugin-react": "^7.23.1",
-		"mini-css-extract-plugin": "^1.4.1",
-		"optimize-css-assets-webpack-plugin": "^5.0.4",
-		"path": "^0.12.7",
-		"postcss": "^8.2.12",
-		"postcss-loader": "^5.2.0",
-		"process": "^0.11.10",
-		"sass": "^1.32.8",
-		"sass-loader": "^11.0.1",
-		"style-loader": "^2.0.0",
-		"webpack": "^5.31.0",
-		"webpack-cli": "^4.6.0"
+		"@babel/plugin-proposal-optional-chaining": "^7.7.5",
+		"@babel/preset-react": "^7.14.5",
+		"@wordpress/scripts": "^6.1.1",
+		"classnames": "^2.2.6",
+		"css-loader": "^3.4.1",
+		"mini-css-extract-plugin": "^0.9.0",
+		"node-sass": "^4.13.0",
+		"react-router-dom": "^5.1.2",
+		"react-select": "^3.1.0",
+		"sass-loader": "^8.0.0",
+		"uuid": "^3.4.0",
+		"webpack": "^4.46.0",
+		"webpack-cli": "^4.7.2"
 	},
-	"browserslist": [
-		"extends @wordpress/browserslist-config"
-	]
+	"scripts": {
+		"dev": "wp-scripts start",
+		"build": "wp-scripts build",
+		"lint:js": "wp-scripts lint-js src/",
+		"lint:css": "wp-scripts lint-style src/",
+		"make-pot": "wp i18n make-pot ./ languages/webot.pot --exclude=build,assets",
+		"zip": "node build",
+		"release": "npm run make-pot && npm run clean && npm run build && node build",
+		"clean": "rimraf assets/css && rimraf assets/js"
+	}
 }
