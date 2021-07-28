@@ -75,6 +75,7 @@ class Listing implements Module {
 	 */
 	public function assets(): void {
 		$dependency = require_once plugin()->path . '/build/listing.asset.php';
+
 		wp_register_script(
 			'wp-user-listing-script',
 			trailingslashit( plugin()->url ) . 'build/listing.js',
@@ -83,7 +84,9 @@ class Listing implements Module {
 			true
 		);
 
-		wp_enqueue_script( 'wp-user-listing-script' );
+		if ( ! empty( $_GET['page'] ) && 'wp-user-listing' === $_GET['page'] ) {
+			wp_enqueue_script( 'wp-user-listing-script' );
+		}
 	}
 
 }

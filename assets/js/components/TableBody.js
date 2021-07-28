@@ -43,7 +43,7 @@ const TableBody = () => {
 								<br />
 								<div className="row-actions">
 									<span className="edit">
-										<a href="#">Edit</a> |
+										<a href="#">Edit</a> | &nbsp;
 									</span>
 									<span className="delete">
 										<a className="submitdelete" href="#">Delete</a>
@@ -55,7 +55,7 @@ const TableBody = () => {
 								<a href="mailto:{ user.email }">{ user.email }</a>
 							</td>
 							<td className="role column-role" data-colname="Role">
-								{ user.roles.join( ',' ) }
+								{ Object.keys( user.roles ).map( (role) => { return user.roles[role] } ).join( ',' ) }
 							</td>
 						</tr>
 					)

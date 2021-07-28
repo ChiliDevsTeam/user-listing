@@ -14,6 +14,8 @@ namespace ChiliDevs\UserListing\Models;
 
 use WP_User;
 
+use function ChiliDevs\UserListing\plugin;
+
 /**
  * User model.
  *
@@ -27,6 +29,13 @@ class User {
 	 * @var int
 	 */
 	protected $id;
+
+	/**
+	 * User utils.
+	 *
+	 * @var object
+	 */
+	protected $user_utils;
 
 	/**
 	 * Stores customer data.
@@ -63,6 +72,8 @@ class User {
 	 * @param mixed $data User data.
 	 */
 	public function __construct( $data = 0 ) {
+		$this->user_utils = plugin()->container()->get( 'user_utils' );
+
 		if ( $data instanceof User ) {
 			$this->set_id( absint( $data->get_id() ) );
 			$this->data = $data->data;
@@ -220,7 +231,7 @@ class User {
 	 * @return array
 	 */
 	public function get_roles(): array {
-		return $this->wp_user->roles;
+		return $this->user_utils->get_role_list( $this->wp_user );
 	}
 
 	/**

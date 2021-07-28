@@ -15,10 +15,10 @@ declare(strict_types=1);
 
 namespace ChiliDevs\UserListing;
 
-use ChiliDevs\UserListing\Modules\Listing\Listing;
 use InvalidArgumentException;
 use Pimple\Container as PimpleContainer;
-use ChiliDevs\UserListing\Modules\REST\Api;
+use ChiliDevs\UserListing\Utils\UserUtils;
+use ChiliDevs\UserListing\Modules\Listing\Listing;
 use ChiliDevs\UserListing\Modules\REST\ApiContainer;
 
 /**
@@ -73,6 +73,17 @@ class Container {
 		 */
 		$this->container['rest_api'] = function( PimpleContainer $c ) {
 			return new ApiContainer();
+		};
+
+		/**
+		 * Define User util service
+		 *
+		 * @param PimpleContainer $c Pimple container object.
+		 *
+		 * @return UserUtils
+		 */
+		$this->container['user_utils'] = function( PimpleContainer $c ) {
+			return new UserUtils();
 		};
 
 		/**
